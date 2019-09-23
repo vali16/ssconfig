@@ -1,0 +1,16 @@
+[Unit]
+Description=Shadowsocks server
+After=network.target
+Wants=network.target
+[Service]
+Type=forking
+PIDFile=/var/run/shadowsocks.pid
+ExecStart=/usr/bin/python /usr/local/bin/ssserver -c /etc/shadowsocks.json -d start
+ExecStop=/usr/bin/python /usr/local/bin/ssserver -c /etc/shadowsocks.json -d start
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+[Unit]
+Description=Kcptun Service
+After=network.target
+
+[Service]
+Type=simple
+User=nobody
+ExecStart=/usr/local/bin/server_linux_amd64 -t "207.148.26.65:443" -l ":33340" -mode fast2 -crypt salsa20
+# Restart=always
+# RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
